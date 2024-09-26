@@ -12,7 +12,7 @@ class ofApp : public ofBaseApp{
 		ofxGVTextureSerializer serializer;
 		ofTexture tex;
 
-		// ofxZmqPublisher publisher;
+//		 ofxZmqPublisher publisher;
 		ofxZmqSubscriber subscriber;
 
 		void setup();

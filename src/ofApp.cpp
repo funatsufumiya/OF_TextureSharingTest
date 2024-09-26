@@ -5,25 +5,28 @@ void ofApp::setup(){
     ofLogToConsole();
     ofSetFrameRate(60);
     
-    subscriber.connect("tcp://localhost:9991");
+    subscriber.connect("tcp://localhost:5555");
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     bool atleast_one = false;
-    while (subscriber.hasWaitingMessage()) {
+     while (subscriber.hasWaitingMessage()) {
         atleast_one = true;
-        ofLog() << "has waiting message!";
         ofBuffer buffer;
         subscriber.getNextMessage(buffer);
 
-        try {
-            tex = serializer.deserialize(buffer);
-            ofLog() << "deserialized!";
-        } catch (std::exception& e) {
-            ofLogError() << e.what();
+        if (buffer.size() > 0) {
+            ofLog() << "has waiting message!";
+            
+            try {
+                tex = serializer.deserialize(buffer);
+                ofLog() << "deserialized!";
+            } catch (std::exception& e) {
+                ofLogError() << e.what();
+            }
         }
-    }
+     }
     
     if(!atleast_one){
 //        ofLog() << "no waiting message....orz";
