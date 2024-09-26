@@ -2,17 +2,18 @@
 
 #include "ofMain.h"
 
-#include "libsharedmemory.hpp"
+// #include "libsharedmemory.hpp"
+#include "ofxZmq.h"
 #include "ofxGVTextureSerializer.h"
 
 class ofApp : public ofBaseApp{
 
 	public:
-		std::shared_ptr<lsm::SharedMemoryReadStream> sm_reader;
-		std::shared_ptr<lsm::SharedMemoryWriteStream> sm_writer;
-
 		ofxGVTextureSerializer serializer;
 		ofTexture tex;
+
+		// ofxZmqPublisher publisher;
+		ofxZmqSubscriber subscriber;
 
 		void setup();
 		void update();

@@ -2,30 +2,22 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
+    ofLogToConsole();
+    ofSetFrameRate(60);
+    
+    subscriber.connect("tcp://localhost:9991");
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    bool ok = false;
+    while (subscriber.hasWaitingMessage()) {
+        ofLog() << "has waiting message!";
+        ofBuffer buffer;
+        subscriber.getNextMessage(buffer);
 
-    if(!sm_reader) {
-        //sm_reader = std::make_shared<lsm::SharedMemoryReadStream>("imagePipe", 262143, false);
-        auto res = lsm::SharedMemoryReadStream::tryCreate("imagePipe", 262143, false);
-        if (res.first) {
-            sm_reader = res.second;
-            ok = true;
-        }
-    }
-    else {
-        ok = true;
-    }
-
-    if (ok) {
         try {
-            ofBuffer buffer = sm_reader->readBytes();
             tex = serializer.deserialize(buffer);
-            buffer.clear();
+            ofLog() << "deserialized!";
         } catch (std::exception& e) {
             ofLogError() << e.what();
         }
@@ -35,6 +27,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     if (tex.isAllocated()) {
+        ofLog() << "drawed!!";
         tex.draw(0, 0);
     }
 }
