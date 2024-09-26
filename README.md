@@ -57,7 +57,7 @@ void ofApp::setup(){
     ofLogToConsole();
     ofSetFrameRate(60);
     
-    fbo.allocate(1920, 1080, GL_RGBA); // must be GL_RGBA
+    fbo.allocate(512, 512, GL_RGBA); // must be GL_RGBA
     publisher.bind("tcp://*:5555");
 }
 
