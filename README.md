@@ -1,6 +1,6 @@
 # OF TextureSharingTest
 
-Texture Sharing example, using [ZMQ](https://github.com/funatsufumiya/ofxZmq) and [GVTextureSerializer](https://github.com/funatsufumiya/ofxGVTextureSerializer).
+Realtime Texture Sharing example, using [ZMQ](https://github.com/funatsufumiya/ofxZmq) and [GVTextureSerializer](https://github.com/funatsufumiya/ofxGVTextureSerializer). Transferring bytes size is 1/40 (max) smaller than normal RGBA8 texture transport.
 
 (this code is receiver (ZMQ_SUB). tested with [godot_TextureSharingTest](https://github.com/funatsufumiya/godot_TextureSharingTest))
 
