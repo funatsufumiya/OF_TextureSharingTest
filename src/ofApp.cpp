@@ -22,9 +22,13 @@ void ofApp::update(){
     }
 
     if (ok) {
-        ofBuffer buffer = sm_reader->readBytes();
-        tex = serializer.deserialize(buffer);
-        buffer.clear();
+        try {
+            ofBuffer buffer = sm_reader->readBytes();
+            tex = serializer.deserialize(buffer);
+            buffer.clear();
+        } catch (std::exception& e) {
+            ofLogError() << e.what();
+        }
     }
 }
 
