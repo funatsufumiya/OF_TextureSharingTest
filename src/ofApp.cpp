@@ -17,11 +17,11 @@ void ofApp::update(){
         subscriber.getNextMessage(buffer);
 
         if (buffer.size() > 0) {
-            ofLog() << "has waiting message!";
+            // ofLog() << "has waiting message!";
             
             try {
                 tex = serializer.deserialize(buffer);
-                ofLog() << "deserialized!";
+                // ofLog() << "deserialized!";
             } catch (std::exception& e) {
                 ofLogError() << e.what();
             }
@@ -36,7 +36,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     if (tex.isAllocated()) {
-        ofLog() << "drawed!!";
+        // ofLog() << "drawed!!";
         tex.draw(0, 0);
     }
 }
