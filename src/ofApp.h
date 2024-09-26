@@ -12,7 +12,7 @@ class ofApp : public ofBaseApp{
 		std::shared_ptr<lsm::SharedMemoryWriteStream> sm_writer;
 
 		ofxGVTextureSerializer serializer;
-		ofxGVTexture tex;
+		ofTexture tex;
 
 		void setup();
 		void update();
