@@ -25,9 +25,7 @@ void ofApp::setup(){
 }
 
 void ofApp::update(){
-    bool atleast_one = false;
      while (subscriber.hasWaitingMessage()) {
-        atleast_one = true;
         ofBuffer buffer;
         subscriber.getNextMessage(buffer);
 
