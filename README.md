@@ -45,3 +45,36 @@ void ofApp::draw(){
     }
 }
 ```
+
+## Code (Sender)
+
+```cpp
+ofxGVTextureSerializer serializer;
+ofFbo fbo;
+ofxZmqPublisher publisher;
+
+void ofApp::setup(){
+    ofLogToConsole();
+    ofSetFrameRate(60);
+    
+    fbo.allocate(1920, 1080, GL_RGBA); // must be GL_RGBA
+    publisher.bind("tcp://*:5555");
+}
+
+void ofApp::update(){
+    fbo.begin();
+    ofClear(0);
+    ofSetColor(255);
+    
+    // draw rotating triangle
+    ofPushMatrix();
+    ofTranslate(fbo.getWidth() / 2, fbo.getHeight() / 2);
+    ofRotateDeg(ofGetElapsedTimef() * 30);
+    ofDrawTriangle(0, -100, 87, 100, -87, 100);
+    ofPopMatrix();
+
+    fbo.end();
+    
+    ofBuffer buffer = serializer.serializeTexture(fbo.getTexture());
+    publisher.send(buffer);
+}
