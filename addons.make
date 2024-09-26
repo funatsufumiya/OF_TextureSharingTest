@@ -1,3 +1,2 @@
 ofxGVTextureSerializer
-ofxSharedMemory
 ofxZmq
