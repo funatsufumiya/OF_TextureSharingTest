@@ -34,8 +34,9 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    if (tex.isAllocated()) {
-        tex.draw(0, 0);
+    auto _tex = tex.getTexture();
+    if (_tex.isAllocated()) {
+        _tex.draw(0, 0);
     }
 }
 
